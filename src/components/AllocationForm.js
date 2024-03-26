@@ -60,14 +60,19 @@ const AllocationForm = (props) => {
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
 
-                    <input
-                        required='required'
+                  <input
+                        required
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={(event) => setCost(event.target.value)}>
-                        </input>
+                        style={{ marginLeft: '2rem' }}
+                        onChange={(event) => {
+                            // Ensure only numeric input is accepted
+                            const enteredValue = event.target.value.replace(/[^0-9]/g, '');
+                            setCost(enteredValue);
+                        }}
+                    />
+
 
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
